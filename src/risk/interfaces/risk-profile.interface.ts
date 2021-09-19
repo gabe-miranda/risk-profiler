@@ -1,4 +1,4 @@
-export interface RiskProfile {
+export class RiskProfile {
   auto: RiskProfileStatus;
   disability: RiskProfileStatus;
   home: RiskProfileStatus;
@@ -7,6 +7,7 @@ export interface RiskProfile {
 
 export enum RiskProfileStatus {
   REGULAR = 'regular',
+  RESPONSIBLE = 'responsible',
   ECONOMIC = 'economic',
   INELEGIBLE = 'ineligible',
 }

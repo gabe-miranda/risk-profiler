@@ -11,7 +11,7 @@ import { Type } from 'class-transformer';
 import { House } from '../models/house.model';
 import { Vehicle } from '../models/vehicle.model';
 
-enum MaritalStatus {
+export enum MaritalStatus {
   MARRIED = 'married',
   SINGLE = 'single',
 }

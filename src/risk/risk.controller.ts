@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { CalculateRiskDto } from './dto/calculate-risk.dto';
-import { RiskProfile } from './risk.model';
+import { RiskProfile } from './interfaces/risk-profile.interface';
 import { RiskService } from './risk.service';
 
 @Controller('risk')

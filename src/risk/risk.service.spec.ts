@@ -1,5 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { RiskProfile, RiskProfileStatus } from './risk.model';
+import {
+  RiskProfile,
+  RiskProfileStatus,
+} from './interfaces/risk-profile.interface';
 import { RiskService } from './risk.service';
 
 describe('RiskService', () => {
@@ -14,13 +17,26 @@ describe('RiskService', () => {
   });
 
   it('should calculate and return risk profile', () => {
-    const expectedResponse: RiskProfile = {
-      auto: RiskProfileStatus.REGULAR,
-      disability: RiskProfileStatus.INELEGIBLE,
-      home: RiskProfileStatus.ECONOMIC,
-      life: RiskProfileStatus.REGULAR,
-    };
+    const expectedResponse = new RiskProfile();
+    expectedResponse.auto = RiskProfileStatus.ECONOMIC;
+    expectedResponse.disability = RiskProfileStatus.ECONOMIC;
+    expectedResponse.home = RiskProfileStatus.ECONOMIC;
+    expectedResponse.life = RiskProfileStatus.ECONOMIC;
 
-    expect(service.calculateRiskProfile()).toStrictEqual(expectedResponse);
+    expect(
+      service.calculateRiskProfile({
+        age: 29,
+        dependents: 0,
+        house: {
+          ownership_status: 'owned',
+        },
+        income: 250000,
+        marital_status: 'single',
+        risk_questions: [0, 1, 0],
+        vehicle: {
+          year: 2014,
+        },
+      }),
+    ).toStrictEqual(expectedResponse);
   });
 });

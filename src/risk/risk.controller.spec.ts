@@ -1,6 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { RiskController } from './risk.controller';
-import { RiskProfile, RiskProfileStatus } from './risk.model';
+import {
+  RiskProfile,
+  RiskProfileStatus,
+} from './interfaces/risk-profile.interface';
 import { RiskService } from './risk.service';
 
 describe('RiskController', () => {
@@ -21,17 +24,16 @@ describe('RiskController', () => {
       dependents: 2,
       house: { ownership_status: 'owned' },
       income: 0,
-      marital_status: 'single',
-      risk_questions: [0, 1, 0],
+      marital_status: 'married',
+      risk_questions: [1, 0, 1],
       vehicle: { year: 2020 },
     };
 
-    const expectedResponse: RiskProfile = {
-      auto: RiskProfileStatus.REGULAR,
-      disability: RiskProfileStatus.INELEGIBLE,
-      home: RiskProfileStatus.ECONOMIC,
-      life: RiskProfileStatus.REGULAR,
-    };
+    const expectedResponse: RiskProfile = new RiskProfile();
+    expectedResponse.auto = RiskProfileStatus.REGULAR;
+    expectedResponse.disability = RiskProfileStatus.INELEGIBLE;
+    expectedResponse.home = RiskProfileStatus.REGULAR;
+    expectedResponse.life = RiskProfileStatus.RESPONSIBLE;
 
     expect(controller.calculateRiskProfile(requestBody)).toStrictEqual(
       expectedResponse,

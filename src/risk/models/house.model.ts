@@ -1,6 +1,6 @@
 import { IsEnum, IsNotEmpty } from 'class-validator';
 
-enum OwnershipStatus {
+export enum OwnershipStatus {
   OWNED = 'owned',
   MORTGAGED = 'mortgaged',
 }
