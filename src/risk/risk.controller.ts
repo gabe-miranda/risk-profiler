@@ -1,4 +1,5 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { CalculateRiskDto } from './dto/calculate-risk.dto';
 import { RiskProfile } from './risk.model';
 import { RiskService } from './risk.service';
 
@@ -7,7 +8,7 @@ export class RiskController {
   constructor(private riskService: RiskService) {}
 
   @Post('profile')
-  calculateRiskProfile(): RiskProfile {
-    return this.riskService.calculateRiskProfile();
+  calculateRiskProfile(@Body() body: CalculateRiskDto): RiskProfile {
+    return this.riskService.calculateRiskProfile(body);
   }
 }

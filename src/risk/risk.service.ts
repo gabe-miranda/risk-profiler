@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { CalculateRiskDto } from './dto/calculate-risk.dto';
 import { RiskProfile, RiskProfileStatus } from './risk.model';
 
 @Injectable()
@@ -10,7 +11,8 @@ export class RiskService {
     life: RiskProfileStatus.REGULAR,
   };
 
-  calculateRiskProfile(): RiskProfile {
+  calculateRiskProfile(body: CalculateRiskDto): RiskProfile {
+    console.log(body);
     return this.riskProfile;
   }
 }
