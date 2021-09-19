@@ -9,5 +9,5 @@ export enum RiskProfileStatus {
   REGULAR = 'regular',
   RESPONSIBLE = 'responsible',
   ECONOMIC = 'economic',
-  INELEGIBLE = 'ineligible',
+  INELIGIBLE = 'ineligible',
 }

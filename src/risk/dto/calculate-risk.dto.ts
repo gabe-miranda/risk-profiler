@@ -28,7 +28,7 @@ export class CalculateRiskDto {
   @ValidateNested()
   @IsOptional()
   @Type(() => House)
-  house: House;
+  house?: House;
 
   @Min(0)
   @IsInt()
@@ -44,5 +44,5 @@ export class CalculateRiskDto {
   @ValidateNested()
   @IsOptional()
   @Type(() => Vehicle)
-  vehicle: Vehicle;
+  vehicle?: Vehicle;
 }

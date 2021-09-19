@@ -13,8 +13,8 @@ export class UserAgeRiskProvider implements RiskProvider {
     riskProfile: RiskProfile,
   ): void {
     if (body.age > 60) {
-      riskProfile.disability = RiskProfileStatus.INELEGIBLE;
-      riskProfile.life = RiskProfileStatus.INELEGIBLE;
+      riskProfile.disability = RiskProfileStatus.INELIGIBLE;
+      riskProfile.life = RiskProfileStatus.INELIGIBLE;
       return;
     } else if (body.age >= 30 && body.age <= 40) {
       this.deductRiskFromAllInsuranceLines(riskScore, 1);

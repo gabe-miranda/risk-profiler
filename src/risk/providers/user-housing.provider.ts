@@ -14,7 +14,7 @@ export class UserHousingRiskProvider implements RiskProvider {
     riskProfile: RiskProfile,
   ): void {
     if (!body.house) {
-      riskProfile.home = RiskProfileStatus.INELEGIBLE;
+      riskProfile.home = RiskProfileStatus.INELIGIBLE;
       return;
     }
 

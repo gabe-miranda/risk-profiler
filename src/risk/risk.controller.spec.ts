@@ -31,7 +31,7 @@ describe('RiskController', () => {
 
     const expectedResponse: RiskProfile = new RiskProfile();
     expectedResponse.auto = RiskProfileStatus.REGULAR;
-    expectedResponse.disability = RiskProfileStatus.INELEGIBLE;
+    expectedResponse.disability = RiskProfileStatus.INELIGIBLE;
     expectedResponse.home = RiskProfileStatus.REGULAR;
     expectedResponse.life = RiskProfileStatus.RESPONSIBLE;
 

@@ -57,7 +57,7 @@ export class RiskService {
     riskProfile: RiskProfile,
   ): RiskProfile {
     Object.keys(riskScore).forEach((key) => {
-      if (riskProfile[key] === RiskProfileStatus.INELEGIBLE) {
+      if (riskProfile[key] === RiskProfileStatus.INELIGIBLE) {
         return;
       }
       if (riskScore[key] <= 0) {

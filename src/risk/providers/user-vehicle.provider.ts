@@ -13,7 +13,7 @@ export class UserVehicleRiskProvider implements RiskProvider {
     riskProfile: RiskProfile,
   ): void {
     if (!body.vehicle) {
-      riskProfile.auto = RiskProfileStatus.INELEGIBLE;
+      riskProfile.auto = RiskProfileStatus.INELIGIBLE;
       return;
     }
 

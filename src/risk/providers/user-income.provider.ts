@@ -13,7 +13,7 @@ export class UserIncomeRiskProvider implements RiskProvider {
     riskProfile: RiskProfile,
   ): void {
     if (body.income === 0) {
-      riskProfile.disability = RiskProfileStatus.INELEGIBLE;
+      riskProfile.disability = RiskProfileStatus.INELIGIBLE;
     }
 
     if (body.income > 200000) {
