@@ -16,15 +16,27 @@ describe('AppController (e2e)', () => {
   });
 
   it('/risk/profile (POST)', () => {
+    const requestBody = {
+      age: 25,
+      dependents: 0,
+      house: {
+        ownership_status: 'owned',
+      },
+      income: 250000,
+      marital_status: 'single',
+      risk_questions: [0, 0, 0],
+    };
+
     const expectedResponse = {
-      auto: 'regular',
-      disability: 'ineligible',
+      auto: 'ineligible',
+      disability: 'economic',
       home: 'economic',
-      life: 'regular',
+      life: 'economic',
     };
 
     return request(app.getHttpServer())
       .post('/risk/profile')
+      .send(requestBody)
       .expect(201)
       .expect(expectedResponse);
   });
