@@ -1,51 +1,74 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# Risk Profiler
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This project is based on the Origin backend take-home assignment, available [here](https://github.com/OriginFinancial/origin-backend-take-home-assignment).
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## How this app was developed
 
-## Description
+The entire project was developed using **TypeScript** on top of **NestJS**, a framework that provides an out-of-the-box application architecture that helps to create a highly testable, scalable, and easy to maintain the application. We're using **Prettier+ESLint** to ensure standard good practices defined by the TypeScript community. Jest is handling all the testing along with a Nest helper lib.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Under the hood, Nest makes use of robust HTTP Server frameworks like Express to handle all the requests by default.
 
 ## Installation
 
 ```bash
+# set your node version to the same version inside .nvmrc
+# (Optional but suggested)
+$ nvm use
+
 $ npm install
 ```
 
 ## Running the app
 
 ```bash
-# development
+# app running on port 3000
 $ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Test
+## Making requests
+
+The API accepts POST requests via the endpoint `/risk/profile`.
+
+### Example via curl
+
+```bash
+$ curl -H "Content-Type:application/json" \
+-X POST -d '
+  {
+    "age": 27,
+    "dependents": 0,
+    "house": {"ownership_status": "owned"},
+    "income": 250000,
+    "marital_status": "single",
+    "risk_questions": [0, 0, 0],
+    "vehicle": {"year": 2018}
+  }
+' http://localhost:3000/risk/profile
+```
+
+### Insomnia
+
+An insomnia collection with a few requests used during the development for testing is available in the [insomnia.json](insomnia.json) file.
+
+## Input validation
+
+To validate the incoming requests we're taking advantage of Nest `ValidationPipe`. The actual validation code is all based on the declarative decorators annotated inside our DTO and model declarations, like the example:
+
+```typescript
+@Min(0) // Validate that the value is a minimum of 0.
+@IsInt() // Ensure that the value is a integer.
+age: number;
+```
+
+We don't need to use the same validation to the output data due to TypeScript type safety.
+
+## Tests
+
+The test approach adopted was testing all the internal risk providers that handle all the risk algorithm rules, so we can ensure the rules inside these pure functions. We also test the risk service to ensure that all providers work together and test the controller to see the entire service working.
+
+The e2e test alongside testing the rules again can show problems during the application bootstrap event.
+
+### Running the tests
 
 ```bash
 # unit tests
@@ -53,21 +76,4 @@ $ npm run test
 
 # e2e tests
 $ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
