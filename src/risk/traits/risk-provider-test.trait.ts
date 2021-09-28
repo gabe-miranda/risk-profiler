@@ -50,6 +50,7 @@ export class RiskProviderTestTrait {
       disability: 0,
       home: 0,
       life: 0,
+      renters: 0,
     };
   }
 }

@@ -3,6 +3,7 @@ export class RiskProfile {
   disability: RiskProfileStatus;
   home: RiskProfileStatus;
   life: RiskProfileStatus;
+  renters: RiskProfileStatus;
 }
 
 export enum RiskProfileStatus {

@@ -34,6 +34,7 @@ describe('RiskController', () => {
     expectedResponse.disability = RiskProfileStatus.INELIGIBLE;
     expectedResponse.home = RiskProfileStatus.REGULAR;
     expectedResponse.life = RiskProfileStatus.RESPONSIBLE;
+    expectedResponse.renters = RiskProfileStatus.INELIGIBLE;
 
     expect(controller.calculateRiskProfile(requestBody)).toStrictEqual(
       expectedResponse,

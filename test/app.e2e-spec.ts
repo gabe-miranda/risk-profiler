@@ -32,6 +32,7 @@ describe('AppController (e2e)', () => {
       disability: 'economic',
       home: 'economic',
       life: 'economic',
+      renters: 'ineligible',
     };
 
     return request(app.getHttpServer())

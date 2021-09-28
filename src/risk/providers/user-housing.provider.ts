@@ -15,12 +15,20 @@ export class UserHousingRiskProvider implements RiskProvider {
   ): void {
     if (!body.house) {
       riskProfile.home = RiskProfileStatus.INELIGIBLE;
+      riskProfile.renters = RiskProfileStatus.INELIGIBLE;
       return;
     }
 
     if (body.house.ownership_status === OwnershipStatus.MORTGAGED) {
+      riskProfile.renters = RiskProfileStatus.INELIGIBLE;
       riskScore.home += 1;
       riskScore.disability += 1;
+    }
+
+    if (body.house.ownership_status === OwnershipStatus.RENTED) {
+      riskProfile.home = RiskProfileStatus.INELIGIBLE;
+    } else if (body.house.ownership_status === OwnershipStatus.OWNED) {
+      riskProfile.renters = RiskProfileStatus.INELIGIBLE;
     }
 
     return;

@@ -31,6 +31,7 @@ describe('UserVehicleRiskProvider', () => {
       disability: 0,
       home: 0,
       life: 0,
+      renters: 0,
     };
 
     expect(riskScore).toEqual(expectedRiskScore);
@@ -51,6 +52,7 @@ describe('UserVehicleRiskProvider', () => {
       disability: 0,
       home: 0,
       life: 0,
+      renters: 0,
     };
 
     expect(riskScore).toEqual(expectedRiskScore);

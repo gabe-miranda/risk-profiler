@@ -29,6 +29,7 @@ describe('UserQuestionsRiskProvider', () => {
       disability: 2,
       home: 0,
       life: 0,
+      renters: 0,
     };
 
     expect(riskScore).toStrictEqual(expectedRiskScore);
@@ -47,6 +48,7 @@ describe('UserQuestionsRiskProvider', () => {
       disability: 0,
       home: 0,
       life: 0,
+      renters: 0,
     };
 
     expect(riskScore).toStrictEqual(expectedRiskScore);

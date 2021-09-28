@@ -47,6 +47,7 @@ export class RiskService {
       disability: baseScore,
       home: baseScore,
       life: baseScore,
+      renters: baseScore,
     };
   }
 

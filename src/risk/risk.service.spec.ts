@@ -22,6 +22,7 @@ describe('RiskService', () => {
     expectedResponse.disability = RiskProfileStatus.ECONOMIC;
     expectedResponse.home = RiskProfileStatus.ECONOMIC;
     expectedResponse.life = RiskProfileStatus.ECONOMIC;
+    expectedResponse.renters = RiskProfileStatus.INELIGIBLE;
 
     expect(
       service.calculateRiskProfile({

@@ -3,4 +3,5 @@ export interface RiskScore {
   disability: number;
   home: number;
   life: number;
+  renters: number;
 }

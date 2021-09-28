@@ -32,6 +32,7 @@ describe('UserAgeRiskProvider', () => {
       disability: 0,
       home: 0,
       life: 0,
+      renters: 0,
     };
 
     expect(riskScore).toEqual(expectedRiskScore);
@@ -52,6 +53,7 @@ describe('UserAgeRiskProvider', () => {
       disability: -1,
       home: -1,
       life: -1,
+      renters: -1,
     };
 
     expect(riskScore).toEqual(expectedRiskScore);
@@ -70,6 +72,7 @@ describe('UserAgeRiskProvider', () => {
       disability: -2,
       home: -2,
       life: -2,
+      renters: -2,
     };
 
     expect(riskScore).toEqual(expectedRiskScore);
