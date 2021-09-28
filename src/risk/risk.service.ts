@@ -11,6 +11,7 @@ import { UserHousingRiskProvider } from './providers/user-housing.provider';
 import { UserIncomeRiskProvider } from './providers/user-income.provider';
 import { UserVehicleRiskProvider } from './providers/user-vehicle.provider';
 import { UserFamilyRiskProvider } from './providers/user-family.provider';
+import { UserQuestionsRiskProvider } from './providers/user-questions.provider';
 
 @Injectable()
 export class RiskService {
@@ -20,6 +21,7 @@ export class RiskService {
     new UserHousingRiskProvider(),
     new UserVehicleRiskProvider(),
     new UserFamilyRiskProvider(),
+    new UserQuestionsRiskProvider(),
   ];
 
   calculateRiskProfile(body: CalculateRiskDto): RiskProfile {
